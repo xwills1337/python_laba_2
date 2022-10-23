@@ -6,9 +6,13 @@ max=df.shape[0]
 while (max>7):
 
     lf = df.loc[mas[0]:mas[-1]]
-    print(lf)
+
+    data=lf['Дата'].iloc[0].replace('.', '')+"_"+lf['Дата'].iloc[lf.shape[0]-1].replace('.', '')
+    lf.to_csv(data + ".csv", sep=';', encoding='cp1251', index=False)
 
     mas = [i + 7 for i in mas]
     max=max-7
 if (max>0):
-    print(df.loc[df.shape[0]-max:df.shape[0]-1])
+    lf=df.loc[df.shape[0]-max:df.shape[0]-1]
+    data = lf['Дата'].iloc[0].replace('.', '') + "_" + lf['Дата'].iloc[lf.shape[0] - 1].replace('.', '')
+    lf.to_csv(data + ".csv", sep=';', encoding='cp1251', index=False)
