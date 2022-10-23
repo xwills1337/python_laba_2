@@ -11,6 +11,6 @@ last_year=df['data_2'][df.shape[0]-1]
 
 for first_year in range(first_year, last_year+1):
      lf=df[df['data_2']==first_year]
-     data=lf['Дата'].iloc[0].replace('.', '')+lf['Дата'].iloc[lf.shape[0]-1].replace('.', '')
+     data=lf['Дата'].iloc[0].replace('.', '')+"_"+lf['Дата'].iloc[lf.shape[0]-1].replace('.', '')
      del lf['data_2']
      lf.to_csv(data+".csv", sep=';', encoding='cp1251', index=False)
