@@ -35,7 +35,7 @@ def get_data_x_y(name_x: str, name_y: str, date: datetime.date) -> list[str] or 
     if (index>=0):
         return df_y.iloc[index]
     return None
-def get_data_year_or_month(name_y_or_m: str, date: datetime.date) -> list[str] or None:
+def get_data_year_or_week(name_y_or_w: str, date: datetime.date) -> list[str] or None:
     """ Find data for a specified date
     Args:
         name_y_or_m (str): file address
@@ -44,9 +44,9 @@ def get_data_year_or_month(name_y_or_m: str, date: datetime.date) -> list[str] o
         list[str]: Found data
         None: Not found data
     """
-    for root, dirs, files in os.walk(name_y_or_m):
+    for root, dirs, files in os.walk(name_y_or_w):
         for file in files[0: -1: 1]:
-            df=pd.read_csv(name_y_or_m+file, sep=';', encoding='cp1251')
+            df=pd.read_csv(name_y_or_w+file, sep=';', encoding='cp1251')
             for i in range(df.shape[0]):
                 if (df['Дата'].iloc[i].replace('-', '') == str(date).replace('-', '') or
                     df['Дата'].iloc[i].replace('.', '') == str(date).replace('-', '')):
@@ -92,8 +92,8 @@ if __name__ == "__main__":
     #print(get_data_x_y(name1,name2,valid_date))
     #print(get_data_x_y(name1,name2,invalid_date))
 
-    #print(get_data_year_or_month(name3, valid_date))
-    #print(get_data_year_or_month(name3, invalid_date))
+    #print(get_data_year_or_week(name3, valid_date))
+    #print(get_data_year_or_week(name3, invalid_date))
 
-    #print(get_data_year_or_month(name4, valid_date))
-    #print(get_data_year_or_month(name4, invalid_date))
+    #print(get_data_year_or_week(name4, valid_date))
+    #print(get_data_year_or_week(name4, invalid_date))
