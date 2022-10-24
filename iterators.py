@@ -35,8 +35,38 @@ class DateIterator_X_Y:
                                                       self.df.loc[self.counter - 1][2], self.df.loc[self.counter - 1][3],
                                                       self.df.loc[self.counter - 1][4], self.df.loc[self.counter - 1][5])
 
+class DateIterator_year_or_week:
+
+    def __init__(self, name):
+
+        self.counter = 0
+        self.df=pd.DataFrame()
+        for root, dirs, files in os.walk(name):
+            for file in files[0: -1: 1]:
+                lf = pd.read_csv(name + file, sep=';', encoding='cp1251')
+                self.df = pd.concat([self.df, lf], ignore_index=True)
+    def __next__(self) -> tuple:
+        if self.counter == self.df.shape[0]:
+            return (self.df.loc[self.counter - 1][0], self.df.loc[self.counter - 1][1], self.df.loc[self.counter - 1][2],
+                                                      self.df.loc[self.counter - 1][3], self.df.loc[self.counter - 1][4],
+                                                      self.df.loc[self.counter - 1][5], self.df.loc[self.counter - 1][6])
+        elif self.counter < self.df.shape[0]:
+            self.counter += 1
+            return (self.df.loc[self.counter - 1][0], self.df.loc[self.counter - 1][1], self.df.loc[self.counter - 1][2],
+                                                      self.df.loc[self.counter - 1][3], self.df.loc[self.counter - 1][4],
+                                                      self.df.loc[self.counter - 1][5], self.df.loc[self.counter - 1][6])
+
 if __name__ == "__main__":
-    obj = DateIterator_X_Y()
-    while(True):
-        print(next(obj))
+    # obj = DateIterator()
+    # while(True):
+    #     print(next(obj))
+    # obj = DateIterator_X_Y()
+    # while(True):
+    #     print(next(obj))
+    #obj = DateIterator_year_or_week('program 2/')
+    #while(True):
+    #    print(next(obj))
+     obj = DateIterator_year_or_week('program 3/')
+     while(True):
+         print(next(obj))
 
