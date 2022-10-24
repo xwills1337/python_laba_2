@@ -64,11 +64,11 @@ def next_data() -> tuple[str]:
     df.index = df['Дата']
 
     for data in df['Дата']:
-        yield [data, df.loc[data][1], df.loc[data][2], df.loc[data][3], df.loc[data][4],
-                                                       df.loc[data][5], df.loc[data][6]]
+        yield (data, df.loc[data][1], df.loc[data][2], df.loc[data][3], df.loc[data][4],
+                                                       df.loc[data][5], df.loc[data][6])
     while(True):
-        yield [df.iloc[-1][0], df.iloc[-1][1], df.iloc[-1][2], df.iloc[-1][3], df.iloc[-1][4],
-                                                               df.iloc[-1][5], df.iloc[-1][6]]
+        yield (df.iloc[-1][0], df.iloc[-1][1], df.iloc[-1][2], df.iloc[-1][3], df.iloc[-1][4],
+                                                               df.iloc[-1][5], df.iloc[-1][6])
 
 if __name__ == "__main__":
 
