@@ -63,10 +63,10 @@ if __name__ == "__main__":
     # obj = DateIterator_X_Y()
     # while(True):
     #     print(next(obj))
-    #obj = DateIterator_year_or_week('program 2/')
-    #while(True):
+    # obj = DateIterator_year_or_week('program 2/')
+    # while(True):
     #    print(next(obj))
-     obj = DateIterator_year_or_week('program 3/')
-     while(True):
+      obj = DateIterator_year_or_week('program 3/')
+      while(True):
          print(next(obj))
 
